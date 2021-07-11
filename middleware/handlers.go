@@ -11,13 +11,14 @@ import (
 	"go_api/models"
 
 	"github.com/joho/godotenv" // package used to read the .env file
+	_ "github.com/lib/pq"      // postgres golang drive
 )
 
 // response format
-type response struct {
+/*type response struct {
 	ID      int64  `json:"id,omitempty"`
 	Message string `json:"message,omitempty"`
-}
+}*/
 
 // create connection with postgres db
 func createConnection() *sql.DB {
@@ -47,14 +48,9 @@ func createConnection() *sql.DB {
 	return db
 }
 
-func homePage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to the HomePage!")
-	fmt.Println("Endpoint Hit: homePage")
-}
-
 // GetAllArticles will return all the articles
 func GetAllArticles(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
+	w.Header().Set("Context-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	// get all the users in the db
 	articles, err := getAllArticles()
@@ -63,7 +59,7 @@ func GetAllArticles(w http.ResponseWriter, r *http.Request) {
 		log.Fatalf("Unable to get all user. %v", err)
 	}
 
-	// send all the users as response
+	// send all the articles as response
 	json.NewEncoder(w).Encode(articles)
 }
 

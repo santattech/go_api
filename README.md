@@ -1,5 +1,5 @@
 # REST API with GO
-Perform CRUD operations, but U is missing.
+Perform CRUD operations, but CUD is in progress.
 
 ### Prerequisite
 You will need to install GO. Check your GO version.
@@ -13,7 +13,7 @@ go version go1.16.5 linux/amd64
 1. #### R
 ```
 curl --request GET \
-  --url http://localhost:10000/articles \
+  --url http://localhost:8080/api/articles \
   
 ```
 

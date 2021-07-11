@@ -9,7 +9,6 @@ import (
 func Router() *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
 
-	router.HandleFunc("/", middleware.homePage).Methods("GET")
 	router.HandleFunc("/api/articles", middleware.GetAllArticles).Methods("GET", "OPTIONS")
 	/*myRouter.HandleFunc("/articles/{id}", deleteArticle).Methods("DELETE")
 	myRouter.HandleFunc("/articles/{id}", returnSingleArticle)
